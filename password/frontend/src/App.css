@@ -1,0 +1,16 @@
+:root {
+  --bodyColor: #000000;
+  --textColor: #f9eeee;
+}
+
+body {
+  background-color: var(--bodyColor);
+  color: var(--textColor);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pass {
+  background-color: var(--bodyColor);
+  color: var(--textColor);
+  transition: background-color 0.3s, color 0.3s;
+}

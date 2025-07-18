@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>charging</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        #battery {
+
+            display: flex;
+            position: relative;
+            width: 85px;
+            height: 45px;
+            border: 2px solid #333;
+            background-color: #eee;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        #level {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            background-color: rgb(79, 234, 79);
+            z-index: 1;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        #info {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            color: #222;
+            font-weight: bold;
+            display: flex;
+        }
+
+        .battery-tip {
+            width: 10px;
+            height: 20px;
+            background-color: #333;
+            margin-left: 4px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="battery">
+        <div id="level"></div>
+        <div id="info"></div>
+    </div>
+
+    <div class="battery-tip"></div>
+
+
+    <script>
+        navigator.getBattery().then(
+            (battery) => {
+                function updateBattery() {
+                    const level = Math.floor(battery.level * 100);
+                    let s = document.getElementById("level")
+                    s.style.width =
+                        level + '%'
+                    if (level <= 25) {
+                        s.style.backgroundColor = 'red';
+                    } else if (level <= 50) {
+                        s.style.backgroundColor = 'orangered';
+                    }
+                    else {
+                        s.style.backgroundColor = 'green';
+                    }
+                    document.getElementById('info').innerText =
+                        `  ${level}%${battery.charging ? "⚡" : ''}`
+                }
+                updateBattery();
+                battery.addEventListener('levelchange', updateBattery);
+                battery.addEventListener('chargingchange', updateBattery)
+
+            }
+        )
+
+
+    </script>
+</body>
+
+</html>
