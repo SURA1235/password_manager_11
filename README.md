@@ -10,8 +10,6 @@ A secure and modern Password Manager built with the MERN stack. Easily save, man
 
 ## 🔄 Copy password to clipboard with one click
 
-## 🔑 AES-based encryption for stored passwords
-
 ## 🔒 Authentication system with JWT
 
 ## 🌙 Dark/light mode
